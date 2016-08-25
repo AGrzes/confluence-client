@@ -1,0 +1,15 @@
+{
+  "name": "yellow-confluence",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "lodash": "^4.15.0",
+    "restling": "^0.9.1"
+  }
+}
