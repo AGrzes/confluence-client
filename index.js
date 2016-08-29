@@ -11,7 +11,8 @@ module.exports = function(config) {
             return rest.get(endpoint + '/rest/api/content/search', {
                 query : {
                     cql : cql,
-                    expand : _.isArray(expand) ? expand.join(',') : expand
+                    expand : _.isArray(expand) ? expand.join(',') : expand,
+                    limit: 100
                 },
                 username : username,
                 password : password
