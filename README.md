@@ -17,6 +17,7 @@ confluence.get("SPACE","Page Title", ['body.storage']).then(...)
 All functions returns promises.
 ### search
 Performs cql search.
+
 | Param | Description |
 |---|---|
 | cql | Cql query |
@@ -24,6 +25,7 @@ Performs cql search.
 
 ### request
 Queries confluence rest API.
+
 | Param | Description |
 |---|---|
 | path | path to query |
@@ -31,6 +33,7 @@ Queries confluence rest API.
 
 ### get
 Gets confluence page.
+
 | Param | Description |
 |---|---|
 | spaceKey | Space key |
@@ -39,6 +42,7 @@ Gets confluence page.
 
 ### properties
 Queries page properties.
+
 | Param | Description |
 |---|---|
 | spaceKey | Space key |
