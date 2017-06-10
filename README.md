@@ -1,5 +1,5 @@
 # Confluence Client
-A limited client lirary for confluence.
+A limited client library for confluence.
 
 ## Usage
 
