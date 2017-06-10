@@ -18,21 +18,21 @@ All functions returns promises.
 ### search
 Performs cql search.
 | Param | Description |
-|-|-|
+|---|---|
 | cql | Cql query |
 | expand | Field or fields to expand |
 
 ### request
 Queries confluence rest API.
 | Param | Description |
-|-|-|
+|---|---|
 | path | path to query |
 | params | Parameters to pass |
 
 ### get
 Gets confluence page.
 | Param | Description |
-|-|-|
+|---|---|
 | spaceKey | Space key |
 | title | Page title | 
 | expand | Field or fields to expand |
@@ -40,7 +40,7 @@ Gets confluence page.
 ### properties
 Queries page properties.
 | Param | Description |
-|-|-|
+|---|---|
 | spaceKey | Space key |
 | cql | Cql query to filter source pages| 
 | properties | Properties to return |
