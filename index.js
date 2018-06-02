@@ -23,7 +23,7 @@ module.exports = function(config) {
                 query : params,
                 username : username,
                 password : password
-            }).then(_.property('response'))
+            }).then(_.property('data'))
         },
         get : function(spaceKey,title, expand){
             return rest.get(endpoint + '/rest/api/content', {
