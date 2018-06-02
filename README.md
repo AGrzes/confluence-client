@@ -4,7 +4,7 @@ A limited client library for confluence.
 ## Usage
 
 ```
-var confluence = require('congfluence-client')({
+var confluence = require('confluence-client')({
     username: "admin",
     password: "***",
     endpoint: "http://confluence.example.com:8090"
