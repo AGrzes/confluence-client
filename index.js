@@ -41,7 +41,7 @@ module.exports = function(config) {
                 query : {
                     spaceKey : spaceKey,
                     cql : cql,
-                    headings : _.isArray(properties) ? expand.join(',') : properties,
+                    headings : _.isArray(properties) ? properties.join(',') : properties,
                     pageSize: 1000
                 },
                 username : username,

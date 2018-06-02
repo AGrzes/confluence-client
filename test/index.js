@@ -14,6 +14,8 @@ const expand = 'expand'
 const limit = 100
 const spaceKey = 'spaceKey'
 const title = 'title'
+const pageSize = 1000
+const headings = 'a,b'
 describe('confluence-client', function () {
 
   describe('search', function () {
@@ -105,6 +107,63 @@ describe('confluence-client', function () {
         .reply(200, getResponse);
       return api.get(spaceKey,title, ['a','b']).then((response) => {
         expect(response).to.be.deep.equals(getResponse.results[0])
+      })
+    })
+  })
+
+  describe('properties', function () {
+    const propertiesResponse = {
+      renderedHeadings: ['a','b'],
+      detailLines:[{
+        id:'id',
+        title:'title',
+        details:['a','b']
+      }]
+    }
+    it('Should pass parameters to back end', function () {
+      nock(endpoint, {
+          authorization: `Basic ${Buffer.from(`${username}:${password}`).toString('base64')}`
+        })
+        .get('/rest/masterdetail/1.0/detailssummary/lines')
+        .query({
+          spaceKey,
+          headings,
+          cql,
+          pageSize
+        })
+        .reply(200, propertiesResponse);
+      return api.properties(spaceKey, cql, headings).then((response) => {
+            expect(response).to.be.deep.equals([{
+              id: 'id',
+              title: 'title',
+              properties:{
+              a:'a',
+              b:'b'
+              }
+            }])
+      })
+    })
+    it('Should handle properties as array', function () {
+      nock(endpoint, {
+          authorization: `Basic ${Buffer.from(`${username}:${password}`).toString('base64')}`
+        })
+        .get('/rest/masterdetail/1.0/detailssummary/lines')
+        .query({
+          spaceKey,
+          headings,
+          cql,
+          pageSize
+        })
+        .reply(200, propertiesResponse);
+      return api.properties(spaceKey, cql, ['a','b']).then((response) => {
+            expect(response).to.be.deep.equals([{
+              id: 'id',
+              title: 'title',
+              properties:{
+              a:'a',
+              b:'b'
+              }
+            }])
       })
     })
   })
