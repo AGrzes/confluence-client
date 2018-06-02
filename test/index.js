@@ -44,11 +44,11 @@ describe('confluence-client', function () {
         .get('/rest/api/content/search')
         .query({
           cql,
-          expand:'a,b',
+          expand: 'a,b',
           limit
         })
         .reply(200, searchResponse);
-      return api.search(cql, ['a','b']).then((response) => {
+      return api.search(cql, ['a', 'b']).then((response) => {
         expect(response).to.be.deep.equals(searchResponse)
       })
     })
@@ -56,8 +56,8 @@ describe('confluence-client', function () {
   describe('request', function () {
     const path = '/path'
     const params = {
-      a:'b',
-      c:'d'
+      a: 'b',
+      c: 'd'
     }
     const requestResponse = {
       data: 'data'
@@ -69,7 +69,7 @@ describe('confluence-client', function () {
         .get(path)
         .query(params)
         .reply(200, requestResponse);
-      return api.request(path,params).then((response) => {
+      return api.request(path, params).then((response) => {
         expect(response).to.be.deep.equals(requestResponse)
       })
     })
@@ -90,7 +90,7 @@ describe('confluence-client', function () {
           title
         })
         .reply(200, getResponse);
-      return api.get(spaceKey,title, expand).then((response) => {
+      return api.get(spaceKey, title, expand).then((response) => {
         expect(response).to.be.deep.equals(getResponse.results[0])
       })
     })
@@ -101,11 +101,11 @@ describe('confluence-client', function () {
         .get('/rest/api/content')
         .query({
           spaceKey,
-          expand:'a,b',
+          expand: 'a,b',
           title
         })
         .reply(200, getResponse);
-      return api.get(spaceKey,title, ['a','b']).then((response) => {
+      return api.get(spaceKey, title, ['a', 'b']).then((response) => {
         expect(response).to.be.deep.equals(getResponse.results[0])
       })
     })
@@ -113,11 +113,11 @@ describe('confluence-client', function () {
 
   describe('properties', function () {
     const propertiesResponse = {
-      renderedHeadings: ['a','b'],
-      detailLines:[{
-        id:'id',
-        title:'title',
-        details:['a','b']
+      renderedHeadings: ['a', 'b'],
+      detailLines: [{
+        id: 'id',
+        title: 'title',
+        details: ['a', 'b']
       }]
     }
     it('Should pass parameters to back end', function () {
@@ -133,14 +133,14 @@ describe('confluence-client', function () {
         })
         .reply(200, propertiesResponse);
       return api.properties(spaceKey, cql, headings).then((response) => {
-            expect(response).to.be.deep.equals([{
-              id: 'id',
-              title: 'title',
-              properties:{
-              a:'a',
-              b:'b'
-              }
-            }])
+        expect(response).to.be.deep.equals([{
+          id: 'id',
+          title: 'title',
+          properties: {
+            a: 'a',
+            b: 'b'
+          }
+        }])
       })
     })
     it('Should handle properties as array', function () {
@@ -155,15 +155,15 @@ describe('confluence-client', function () {
           pageSize
         })
         .reply(200, propertiesResponse);
-      return api.properties(spaceKey, cql, ['a','b']).then((response) => {
-            expect(response).to.be.deep.equals([{
-              id: 'id',
-              title: 'title',
-              properties:{
-              a:'a',
-              b:'b'
-              }
-            }])
+      return api.properties(spaceKey, cql, ['a', 'b']).then((response) => {
+        expect(response).to.be.deep.equals([{
+          id: 'id',
+          title: 'title',
+          properties: {
+            a: 'a',
+            b: 'b'
+          }
+        }])
       })
     })
   })
