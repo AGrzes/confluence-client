@@ -12,6 +12,8 @@ const api = confluenceClient({
 const cql = 'cql'
 const expand = 'expand'
 const limit = 100
+const spaceKey = 'spaceKey'
+const title = 'title'
 describe('confluence-client', function () {
 
   describe('search', function () {
@@ -67,6 +69,42 @@ describe('confluence-client', function () {
         .reply(200, requestResponse);
       return api.request(path,params).then((response) => {
         expect(response).to.be.deep.equals(requestResponse)
+      })
+    })
+  })
+
+  describe('get', function () {
+    const getResponse = {
+      results: ['data']
+    }
+    it('Should pass parameters to back end', function () {
+      nock(endpoint, {
+          authorization: `Basic ${Buffer.from(`${username}:${password}`).toString('base64')}`
+        })
+        .get('/rest/api/content')
+        .query({
+          spaceKey,
+          expand,
+          title
+        })
+        .reply(200, getResponse);
+      return api.get(spaceKey,title, expand).then((response) => {
+        expect(response).to.be.deep.equals(getResponse.results[0])
+      })
+    })
+    it('Should handle expand as array', function () {
+      nock(endpoint, {
+          authorization: `Basic ${Buffer.from(`${username}:${password}`).toString('base64')}`
+        })
+        .get('/rest/api/content')
+        .query({
+          spaceKey,
+          expand:'a,b',
+          title
+        })
+        .reply(200, getResponse);
+      return api.get(spaceKey,title, ['a','b']).then((response) => {
+        expect(response).to.be.deep.equals(getResponse.results[0])
       })
     })
   })
